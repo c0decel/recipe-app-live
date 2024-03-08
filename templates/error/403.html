@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Error 403</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/styles.css' %}">
+    </head>
+    <body>
+        <h1>403 forbidden</h1>
+        <p>Whatever you just tried to do, you can't. GO BACK!</p>
+        <button onclick="goBack()">
+            Back
+        </button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </body>
+</html>

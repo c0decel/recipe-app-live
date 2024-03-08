@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>All Recipes</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/styles.css' %}">
+        <style type="text/css">
+
+            .recipe_details {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(255, 213, 082, .9);
+                border-radius: 50px;
+                border-color: rgb(189, 000, 000);
+                border-style: solid;
+                border-width: 6px;
+                margin: 20px auto;
+                width: 75%;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .details_box {
+                text-align: center;
+                font-weight: bold;
+                padding: 20px;
+                background-color: white;
+                border-radius: 10px;
+                border-color: rgb(189, 000, 000);
+                border-style: solid;
+                border-width: 6px;
+                width: fit-content;
+
+                p {
+                    background-color: white;
+                }
+            }
+
+            h1 {
+                font-size: 75px;
+                
+            }
+
+            .difficulty {
+                background-color: white;
+                font-size: 30px;
+                padding: 20px;
+                border-width: 6px;
+                border-color: rgb(189, 000, 000);
+                border-style: solid;
+                border-radius: 15px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+            <img id="banner" src="{% static 'recipes/images/banner.png' %}">
+            <img id="logo" src="{% static 'recipes/images/all_recipes.png' %}">
+        </div>
+        <div class="banner_buttons">
+            {% if user.is_authenticated %}
+                <button>
+                    <a href="/success/">Log Out</a>
+                </button>
+                <button>
+                    <a href="/records/">Records</a>
+                </button>
+            {% endif %}
+        </div>
+        <div class="recipe_details">
+            <h1>{{object.name}}</h1>
+            <img style="width: 400px; border-radius: 20px;" src="{{object.image.url}}">
+            <h2 class="difficulty">{{object.calc_difficulty}}</h2>
+            <h2>Cook time:</h2>
+            <div class="details_box">
+                <p>{{object.cook_time}} minutes</p>
+            </div>
+            <h2>Ingredients:</h2>
+            <div class="details_box">
+                {% for ingredient in object.ingredients_to_list %}
+                    <p>{{ingredient}}</p>
+                {% endfor %}
+            </div>
+            <h2>Description:</h2>
+            <div class="details_box">
+                <p>{{object.description}}</p>
+            </div>
+            <h2>Directions:</h2>
+            <div class="details_box">
+                {% for step in object.steps_to_list %}
+                <p>{{step}}</p>
+                {% endfor %}
+            </div>
+            <button style="margin: 20px;" onclick="goBack()">
+                Back
+            </button>
+        </div>
+
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </body>
+</html>

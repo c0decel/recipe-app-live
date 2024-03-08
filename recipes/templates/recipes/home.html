@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/styles.css' %}">
+        <style type="text/css">
+            .title_section {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(255, 213, 082, .9);
+                border-radius: 50px;
+                border-color: rgb(189, 000, 000);
+                border-style: solid;
+                border-width: 6px;
+                margin: 20px auto;
+                width: 75%;
+                text-align: center;
+                padding: 20px;
+            }
+            button {
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+            <img id="banner" src="{% static 'recipes/images/banner.png' %}">
+            <img id="logo" src="{% static 'recipes/images/home.png' %}">
+        </div>
+        <div class="title_section">
+            <h1>Welcome</h1>
+            <div style="display: flex;">
+                {% if user.is_authenticated %}
+                    <button>
+                        <a href="/success/">Log Out</a>
+                    </button>
+                    <button>
+                        <a href="records">Records</a>
+                    </button>
+                {% else %}
+                    <button>
+                        <a href="/login/">Login</a>
+                    </button>
+                {% endif %}
+                <button>
+                    <a href="all_recipes">All Recipes</a>
+                </button>
+            </div>
+            <p>
+                <a href="admin">Admin</a>
+            </p>
+        </div>
+    </body>
+</html>

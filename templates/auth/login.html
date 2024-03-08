@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>All Recipes</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/styles.css' %}">
+        <style type="text/css">
+            .title_section {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(255, 213, 082, .9);
+                border-radius: 50px;
+                border-color: rgb(189, 000, 000);
+                border-style: solid;
+                border-width: 6px;
+                margin: 20px auto;
+                width: 75%;
+                text-align: center;
+                padding: 20px;
+            }
+            button {
+                margin-top: 20px;
+            }
+            .error_message {
+                color: red;
+                font-weight: bold;
+            }
+            .errorlist.nonfield {
+                color: red;
+                font-weight: bold;
+            }
+            .login_form {
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+            <img id="banner" src="{% static 'recipes/images/banner.png' %}">
+            <img id="logo" src="{% static 'recipes/images/login.png' %}">
+        </div>
+        <div class="title_section">
+            <h1>Login</h1>
+            {% if error_message %}
+                <p class="error_message">
+                    {{error_message}}
+                </p>
+            {% endif %}
+
+            {% comment %} print form {% endcomment %}
+            <form
+                action=""
+                method="POST"
+                class="login_form"
+            >
+                {% csrf_token %}
+                {{form}}<br>
+                <button type="submit">Login</button>
+            </form>
+            <div style="display: flex; flex-direction: row;">
+                <button style="margin: 10px;">
+                    <a href="/signup/">Sign Up</a>
+                </button>
+                <button onclick="goBack()" style="margin: 10px;">
+                    Back
+                </button>
+            </div>
+        </div>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </body>
+</html>

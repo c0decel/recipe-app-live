@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Records</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/styles.css' %}">
+        <style type="text/css">
+            .title_section {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(255, 213, 082, .9);
+                border-radius: 50px;
+                border-color: rgb(189, 000, 000);
+                border-style: solid;
+                border-width: 6px;
+                margin: 20px auto;
+                text-align: center;
+                padding: 20px;
+            }
+            .recipe_grid {
+                margin-top: 20px;
+                display: grid;
+                grid-gap: 10px;
+            }
+
+            @media only screen and (min-width: 1001px) {
+                .recipe_grid {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+            }
+
+            @media only screen and (min-width: 401px) and (max-width: 1000px) {
+                .recipe_grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+
+            @media only screen and (max-width: 400px) {
+                .recipe_grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+
+            .grid_item {
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-width: 10px;
+                border-color: rgb(189, 000, 000);
+                border-style: solid;
+                border-radius: 10px;
+                background-color: rgba(255, 213, 082, .9);
+            }
+            button {
+                margin: 10px;
+            }
+
+            .dataframe {
+                background-color: white;
+                border-style: solid;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+            <img id="banner" src="{% static 'recipes/images/banner.png' %}">
+            <img id="logo" src="{% static 'recipes/images/records.png' %}">
+        </div>
+        <div class="banner_buttons">
+            {% if user.is_authenticated %}
+                <button>
+                    <a href="/success/">Log Out</a>
+                </button>
+            {% endif %}
+        </div>
+        <div class="title_section" style="flex-direction: column; width: 75%;">
+            <h1>Records</h1>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ingredient_form}}<br>
+                <button type="submit" name="ingredient_search_submit">Search</button>
+            </form>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{recipe_form}}<br>
+                <button type="submit" name="recipe_search_submit">Search</button>
+            </form>
+        </div>
+        {% if ingredient_df is not None and not ingredient_df.empty %}
+        <div class="title_section" style="flex-direction: row; width: auto;">
+            <div class="chart_section">
+                {% if chart %}
+                <img src="data:image/png;base64,{{ chart }}">
+                {% endif %}
+            </div>
+            <div class="search_results">
+                <table class="dataframe">
+                    <thead>
+                        <tr>
+                            <th>Recipe Name</th>
+                            <th>Ingredients</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for index, row in ingredient_df.iterrows %}
+                            <tr>
+                                <td>{{ row.name }}</td>
+                                <td>{{ row.ingredients }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+        <div class="title_section">
+            <div class="search_results" style="flex-direction: row; width: auto;">
+                <div class="recipe_grid">
+                    {% if recipe_df is not None and not recipe_df.empty %}
+                    {% for index, row in recipe_df.iterrows %}
+                    <div class="grid_item">
+                        <h2>{{ row.name }}</h2>
+                        <p><strong>Cook Time:</strong> {{ row.cook_time }} minutes</p>
+                        <p><strong>Ingredients:</strong> {{ row.ingredients }}</p>
+                        <p><strong>Description:</strong> {{ row.description }}</p>
+                        <img src="/media/{{ row.image }}" style="width: 200px;" alt="Recipe Image">
+                        <button>
+                            <a href="/all_recipes/{{row.id}}">Details</a>
+                        </button>
+                    </div>
+                    {% endfor %}
+                </div>
+    
+                {% else %}
+                    <h2>Nothing here.</h2>
+                {% endif %}
+            </div>
+        </div>
+        <button onclick="goBack()">
+            Back
+        </button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </body>
+</html>

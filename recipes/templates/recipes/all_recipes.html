@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>All Recipes</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'recipes/css/styles.css' %}">
+        <style type="text/css">
+
+            .recipe_grid {
+                margin-top: 20px;
+                display: grid;
+                grid-gap: 10px;
+            }
+
+            @media only screen and (min-width: 1001px) {
+                .recipe_grid {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+            }
+
+            @media only screen and (min-width: 401px) and (max-width: 1000px) {
+                .recipe_grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+
+            @media only screen and (max-width: 400px) {
+                .recipe_grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+
+            .grid_item {
+                padding: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-width: 10px;
+                border-color: rgb(189, 000, 000);
+                border-style: solid;
+                border-radius: 10px;
+                background-color: rgba(255, 213, 082, .9);
+            }
+
+            p {
+                font-weight: bold;
+                padding: 20px;
+                background-color: white;
+                border-radius: 5px;
+                border-color: rgb(189, 000, 000);
+                border-style: solid;
+                border-width: 6px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+            <img id="banner" src="{% static 'recipes/images/banner.png' %}">
+            <img id="logo" src="{% static 'recipes/images/all_recipes.png' %}">
+        </div>
+        <div class="banner_buttons">
+            {% if user.is_authenticated %}
+                <button>
+                    <a href="/success/">Log Out</a>
+                </button>
+                {% endif %}
+                <button>
+                    <a href="/records/">Records</a>
+                </button>
+            
+        </div>
+        <div class="recipe_grid">
+            {% for object in object_list %}
+            <div class="grid_item">
+                <h1>{{object.name}}</h1>
+                <h2>Difficulty: {{object.calc_difficulty}}</h2>
+                <img style="width: 400px; border-radius: 20px;" src="{{object.image.url}}">
+                <h3>Cook time:</h3>
+                <p>{{object.cook_time}} minutes</p>
+                <h3>Ingredients:</h3>
+                <p>{{object.ingredients}}</p>
+                <button>
+                    <a href="{{ object.get_absolute_url }}">Details</a>
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
