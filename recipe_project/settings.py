@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 # SECURITY WARNING: keep the secret key used in production secret!
+
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
@@ -81,7 +82,7 @@ WSGI_APPLICATION = 'recipe_project.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3')
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3'),
 }
 
 
@@ -123,7 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'recipes/static'
+STATIC_ROOT = BASE_DIR / 'static'
 
 
 MEDIA_URL = '/media/'
