@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'recipe_project.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default=DATABASE_URL)
+    'default': dj_database_url.config(default='postgres://localhost')
 }
 
 #db_from_env = dj_database_url.config(conn_max_age=500)
