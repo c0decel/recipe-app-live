@@ -17,6 +17,7 @@ import dj_database_url
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -122,7 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'recipes/static'
 
 
 MEDIA_URL = '/media/'
