@@ -14,17 +14,18 @@ from pathlib import Path
 import os
 import dj_database_url
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+DATABASES = {
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3'),
+}
+
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','django-insecure-ml49cp(e)=yakpevh4xz)3w)6xuq6kv7g&3^xf^)gr-n3&p#%9')
-
-
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-DATABASE_URL = os.environ.get('DATABASE_URL')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -78,18 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'recipe_project.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-
-DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3'),
-}
-
-
-#db_from_env = dj_database_url.config(conn_max_age=500)
-#DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
