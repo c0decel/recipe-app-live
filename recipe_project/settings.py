@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'recipe_project.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3'),
+    'default': dj_database_url.config(default=DATABASE_URL),
 }
 
 
