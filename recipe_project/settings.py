@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 DATABASES = {
-    'default': dj_database_url.config(default='sqlite:///db.sqlite3'),
+    'default': dj_database_url.config(default=os.environ.get('HEROKU_POSTGRESQL_CHARCOAL_URL'))
 }
 
 db_from_env = dj_database_url.config(conn_max_age=500)
