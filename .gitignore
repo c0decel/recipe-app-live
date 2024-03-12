@@ -8,3 +8,5 @@ __pycache__/
 
 config.py
 data.json
+
+migrations/
