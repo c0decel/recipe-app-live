@@ -27,7 +27,7 @@ DATABASE_URL = os.environ.get('DATABASE_URL')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'immense-reaches-88091.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'immense-reaches-88091-042c81cabc50.herokuapp.com']
 
 
 # Application definition
