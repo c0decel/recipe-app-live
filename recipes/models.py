@@ -10,7 +10,7 @@ class Recipe(models.Model):
     ingredients = models.CharField(max_length=120)
     description = models.TextField(max_length=200)
     steps = models.TextField(max_length=1000, help_text='Separate each step with two commas')
-    image = models.ImageField(upload_to='recipe_images', default='no_img.PNG')
+    image = models.ImageField(upload_to='recipe_images', default='no_img.png')
     created_at = models.DateTimeField(blank=True, null=True, default=datetime(2024, 1, 1))
 
     def calc_difficulty(self):
