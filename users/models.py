@@ -4,11 +4,10 @@ from django.utils.translation import gettext_lazy as _
 
 class User(AbstractUser):
     name = models.CharField(max_length=120)
-    username = models.CharField(max_length=20, unique=True)
-    password = models.CharField(max_length=120)
 
-    class Meta:
-        pass
+    def clean(self):
+        self.username = self.username.lower()
+        super().clean()
 
     groups = models.ManyToManyField(
         Group,
@@ -26,8 +25,4 @@ class User(AbstractUser):
     )
 
     def __str__(self):
-        return str(self.name)
-
-    def save(self, *args, **kwargs):
-        self.username = self.username.lower()
-        super().save(*args, **kwargs)
+        return str(self.username)
