@@ -6,6 +6,9 @@ from django.utils import timezone
 def recipe_image_path(instance, filename):
     return f"recipe_images/{instance.name}/{filename}"
 
+def default_recipe_image():
+    return 'recipe_images/default/no_img.png'
+
 
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
@@ -13,7 +16,7 @@ class Recipe(models.Model):
     ingredients = models.CharField(max_length=120)
     description = models.TextField(max_length=200)
     steps = models.TextField(max_length=1000, help_text='Separate each step with two commas')
-    image = models.ImageField(upload_to=recipe_image_path, default='no_img.png')
+    image = models.ImageField(upload_to=recipe_image_path, default=default_recipe_image)
     created_at = models.DateTimeField(blank=True, null=True, default=datetime(2024, 1, 1))
 
     def calc_difficulty(self):
