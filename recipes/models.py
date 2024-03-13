@@ -7,7 +7,7 @@ def recipe_image_path(instance, filename):
     return f"recipe_images/{instance.name}/{filename}"
 
 def default_recipe_image():
-    return 'recipe_images/default/no_img.png'
+    return 'https://s3.amazonaws.com/recipeimages2133435/recipe_images/default/no_img.png'
 
 
 class Recipe(models.Model):
