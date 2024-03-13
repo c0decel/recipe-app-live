@@ -17,10 +17,11 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-default_db_url = os.environ.get('HEROKU_POSTGRESQL_CHARCOAL_URL')
+
+default_db_url = 'sqlite:///db.sqlite3'
 
 DATABASES = {
-    'default': dj_database_url.config(default=default_db_url)
+    'default': dj_database_url.config(default='sqlite:///db.sqlite3'),
 }
 
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -116,6 +117,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS=[
+   BASE_DIR / 'static'
+]
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
