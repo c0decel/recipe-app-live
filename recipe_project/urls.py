@@ -25,7 +25,6 @@ from recipes.views import ViewAllRecipes
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('recipes.urls')),
-    path('recipes/', include('recipes.urls')),
     path('all_recipes/', ViewAllRecipes.as_view(), name='all_recipes'),
     path('login/', views.login_view, name='login'),
     path('signup/', views.signup_view, name='signup'),
