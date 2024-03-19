@@ -126,7 +126,7 @@
                         <p><strong>Cook Time:</strong> {{ row.cook_time }} minutes</p>
                         <p><strong>Ingredients:</strong> {{ row.ingredients }}</p>
                         <p><strong>Description:</strong> {{ row.description }}</p>
-                        <img src="/media/{{ row.image }}" style="width: 200px;" alt="Recipe Image">
+                        <img src="{{ row.image.url }}" style="width: 200px;" alt="Recipe Image">
                         <button>
                             <a href="/all_recipes/{{row.id}}">Details</a>
                         </button>
