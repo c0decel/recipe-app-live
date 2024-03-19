@@ -79,38 +79,45 @@
             {% endif %}
         </div>
         <div class="recipe_details">
-            <h1>{{object.name}}</h1>
-            <img style="width: 400px; border-radius: 20px;" src="{{object.image.url}}">
-            <h2 class="difficulty">{{object.calc_difficulty}}</h2>
             <div class="grid">
                 <div class="grid_item">
-                    <h2>Cook time:</h2>
-                    <div class="details_box">
-                        <p>{{object.cook_time}} minutes</p>
-                    </div>
+                    <h1>{{object.name}}</h1>
+                    <img style="width: 400px; border-radius: 20px;" src="{{object.image.url}}">
+                    <h2 class="difficulty">{{object.calc_difficulty}}</h2>
                 </div>
                 <div class="grid_item">
-                    <h2>Ingredients:</h2>
-                    <div class="details_box">
-                        {% for ingredient in object.ingredients_to_list %}
-                            <p>{{ingredient}}</p>
-                        {% endfor %}
+                    <div class="grid">
+                        <div class="grid_item">
+                            <h2>Cook time:</h2>
+                            <div class="details_box">
+                                <p>{{object.cook_time}} minutes</p>
+                            </div>
+                        </div>
+                        <div class="grid_item">
+                            <h2>Ingredients:</h2>
+                            <div class="details_box">
+                                {% for ingredient in object.ingredients_to_list %}
+                                    <p>{{ingredient}}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="grid_item">
+                            <h2>Description:</h2>
+                            <div class="details_box">
+                                <p>{{object.description}}</p>
+                            </div>
+                        </div>
+                        <div class="grid_item">
+                            <h2>Directions:</h2>
+                            <div class="details_box">
+                                {% for step in object.steps_to_list %}
+                                <p>{{step}}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="grid_item">
-                    <h2>Description:</h2>
-                    <div class="details_box">
-                        <p>{{object.description}}</p>
-                    </div>
-                </div>
-                <div class="grid_item">
-                    <h2>Directions:</h2>
-                    <div class="details_box">
-                        {% for step in object.steps_to_list %}
-                        <p>{{step}}</p>
-                        {% endfor %}
-                    </div>
-                </div>
+
             </div>
             <button style="margin: 20px;" onclick="goBack()">
                 Back
